@@ -8,30 +8,17 @@ void delay(unsigned int count) {
 
 int main(void) {
     // Set P0.10 as output
-	int j;
-    IODIR0 |= (1 << 7);
-	  IODIR0 |=(1<<12);
-	IODIR0 |=(1<<13);
-	IODIR0 |=(1<<8);
-	IODIR0 |=(1<<9);
-	IODIR0 |=(1<<10);
-	IODIR0 |=(1<<11);
-	IODIR0 |=(1<<14);
-	IODIR0 |=(1<<15);
-	
+    IODIR0 |= (1 << 9);
     
-    for(i=7;i<=15;i++) {
-			for(j=7;j<=i;j++)
-			{
-				
-        IOSET0 |= (1 << j);
-        delay(1000);
-			}
-			for(j=7;j<=i;j++)
-			{
-        IOCLR0 |= (1 << 7);
-        delay(10000);
-			}
-		}
-			return 0;
-	}
+    while (1) {
+        // Turn LED on
+        IOSET0 |= (1 << 9);
+        delay(100000);
+
+        // Turn LED off
+        IOCLR0 |= (1 << 9);
+        delay(100000);
+    }
+
+    return 0;
+}
